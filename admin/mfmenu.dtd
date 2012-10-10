@@ -1,0 +1,45 @@
+<!ELEMENT BTN EMPTY >
+<!ATTLIST BTN id ID #REQUIRED >
+
+<!ELEMENT MAINMENU ( SUBMENU+ )? >
+<!ATTLIST MAINMENU
+    id                  ID      #IMPLIED
+    name                CDATA   #IMPLIED
+    url                 CDATA   #IMPLIED
+    target              CDATA   #IMPLIED
+>
+
+<!ELEMENT OX ( OXMENU | MAINMENU )+ >
+
+<!ELEMENT OXMENU ( MAINMENU+ ) >
+<!ATTLIST OXMENU
+    id                  ID      #IMPLIED
+    type                CDATA   #IMPLIED
+    url                 CDATA   #IMPLIED
+    name                CDATA   #IMPLIED
+>
+
+<!ELEMENT SUBMENU ( TAB | BTN )* >
+<!ATTLIST SUBMENU
+    cl                  CDATA   #IMPLIED
+    disableForDemoShop  CDATA   #IMPLIED
+    id                  ID      #IMPLIED
+    list                CDATA   #IMPLIED
+    rights              CDATA   #IMPLIED
+    link                CDATA   #IMPLIED
+    expand              CDATA   #IMPLIED
+    name                CDATA   #IMPLIED
+    listparam           CDATA   #IMPLIED
+    url                 CDATA   #IMPLIED
+    linkicon            CDATA   #IMPLIED
+>
+
+<!ELEMENT TAB EMPTY >
+<!ATTLIST TAB
+    cl                  CDATA   #IMPLIED
+    disableForDemoShop  CDATA   #IMPLIED
+    id                  ID      #IMPLIED
+    external            CDATA   #IMPLIED
+    location            CDATA   #IMPLIED
+>
+

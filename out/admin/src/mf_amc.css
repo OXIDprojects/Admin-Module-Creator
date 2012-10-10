@@ -1,0 +1,121 @@
+div.box {
+    height:90%;
+}
+.act {
+    color:#fff;
+    background-color: #7f7f7f;
+    padding:0px 3px;
+    margin: 0px -3px;
+    -moz-border-radius:3px;
+}
+.mfHead {
+    width:98%;
+    -moz-border-radius:3px;
+}
+td.edittext {
+    padding: 0px 5px 0 0;
+}
+.mfHead td {
+    font-size:14px;
+    font-weight:bold;
+    padding-left:5px;
+}
+.mfContent {
+    width: 98%;
+    margin:0px;
+    color: #000000;
+}
+.mfBox {
+    border-left: 1px solid #7f7f7f;
+    border-top: none;
+    border-bottom: 1px solid #7f7f7f;
+    border-right: 1px solid #7f7f7f;
+    margin: 0px;
+    padding:5px;
+    -moz-border-radius: 0px 0px 3px 3px;
+}
+td.spaceRight {
+    padding-right: 2px;
+}
+td.spaceLeft {
+    padding-left: 2px;
+}
+.mfHead td.poweredBy {
+    font-weight:normal;
+    font-size:12px;
+    text-align:right;
+}
+.mfHead td.logo {
+    width:124px;
+}
+.mfHead img {
+    margin-top: 5px;
+    margin-right:3px;
+    border: 0px solid #000000;
+}
+.moduleContent {
+    width:98% !important;
+}
+.boxTitle {
+    margin-top: 5px;
+    background-color: #7f7f7f;
+    color:#fff;
+    font-weight:bold;
+    font-size:14px;
+    padding:2px 5px 2px 5px;
+    -moz-border-radius: 3px 3px 0 0;
+}
+.menu {
+    width:200px;
+    display:block;
+    background: url('bg/nav.gif') no-repeat scroll -404px 0px transparent;
+}
+.menuItem {
+    width:200px;
+    display:block;
+    background: url('bg/nav.gif') no-repeat scroll -4px 0px transparent;
+}
+.error {
+    background-color:#F00;
+    color:#FFFFFF !important;
+    padding:4px;
+    -moz-border-radius:3px;
+    font-size:13px;
+}
+.error .message {
+    font-weight:bold;
+}
+.error .type {
+    font-weight:bold;
+}
+.log_success {
+    color: #008000;
+    font-weight:bold;
+}
+.log_error {
+    color: #FF0000;
+    font-weight:bold;
+}
+.mfAMCVersion {
+    margin-right:6px;
+}
+.mfFloatLeft {
+    float:left;
+}
+.mfFloatRight {
+    float:right;
+}
+.mfAMC_dir_create,
+.mfAMC_file_write {
+    color: #000080;
+    font-weight:bold;
+}
+.mfAMC_rollback {
+    color: #800000;
+    font-weight:bold;
+}
+.mfAMC_file_delete,
+.mfAMC_remove_dir {
+    color: #FF4000;
+    font-weight:bold;
+}

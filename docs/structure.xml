@@ -1,0 +1,835 @@
+<?xml version="1.0"?>
+<project version="0.15.1" title="OXID Admin Module Creator">
+  <file path="admin/mf_admin_module_creator.php" hash="cdc97360e12663e69eece68bec667412" package="mfAdminModuleCreator">
+    <docblock>
+      <description>Admin Module Creator view class.</description>
+      <long-description>
+</long-description>
+      <tag line="2" name="package" description="mfAdminModuleCreator"/>
+      <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+      <tag line="2" name="license" description="BSD"/>
+      <tag line="2" name="version" description="0.1"/>
+      <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+    </docblock>
+    <class final="false" abstract="false" line="11" namespace="default" package="mfAdminModuleCreator">
+      <name>mf_admin_module_creator</name>
+      <extends>\oxAdminView</extends>
+      <full_name>\mf_admin_module_creator</full_name>
+      <docblock>
+        <description>Admin Module Creator view class.</description>
+        <long-description>
+</long-description>
+        <tag line="2" name="package" description="mfAdminModuleCreator"/>
+        <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+        <tag line="2" name="license" description="BSD"/>
+        <tag line="2" name="version" description="0.1"/>
+        <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="17" package="Default">
+        <name>$_sThisTemplate</name>
+        <default>'mf_admin_module_creator_main.tpl'</default>
+        <docblock>
+          <description>Current class template name.</description>
+          <long-description>
+</long-description>
+          <tag line="13" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+    </class>
+  </file>
+  <file path="admin/mf_admin_module_creator_main.php" hash="92248d4d1899a658d0633cfa12828727" package="mfAdminModuleCreator">
+    <docblock>
+      <description>Admin Module Creator main view class.</description>
+      <long-description>
+</long-description>
+      <tag line="2" name="package" description="mfAdminModuleCreator"/>
+      <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+      <tag line="2" name="license" description="BSD"/>
+      <tag line="2" name="version" description="0.1"/>
+      <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+    </docblock>
+    <class final="false" abstract="false" line="11" namespace="default" package="mfAdminModuleCreator">
+      <name>mf_admin_module_creator_main</name>
+      <extends>\oxAdminDetails</extends>
+      <full_name>\mf_admin_module_creator_main</full_name>
+      <docblock>
+        <description>Admin Module Creator main view class.</description>
+        <long-description>
+</long-description>
+        <tag line="2" name="package" description="mfAdminModuleCreator"/>
+        <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+        <tag line="2" name="license" description="BSD"/>
+        <tag line="2" name="version" description="0.1"/>
+        <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+      </docblock>
+      <constant namespace="default" line="17" package="Default">
+        <name>VERSION</name>
+        <value>'0.1b'</value>
+        <docblock>
+          <description>Module version</description>
+          <long-description>
+</long-description>
+          <tag line="13" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="default" line="52" package="Default">
+        <name>BUILD_MODE_NEW_TAB</name>
+        <value>0</value>
+        <docblock>
+          <description>Mode to build a new tab in an existing menu entry.</description>
+          <long-description>
+</long-description>
+          <tag line="47" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </constant>
+      <constant namespace="default" line="59" package="Default">
+        <name>BUILD_MODE_NEW_SUBMENU</name>
+        <value>1</value>
+        <docblock>
+          <description>Mode to build a new submenu entry with tabs.</description>
+          <long-description>
+</long-description>
+          <tag line="54" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="private" line="24" package="Default">
+        <name>$_iDirectoryPermissions</name>
+        <default>0775</default>
+        <docblock>
+          <description>Default permissions for created directories.</description>
+          <long-description>
+</long-description>
+          <tag line="19" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="31" package="Default">
+        <name>$_iFilePermissions</name>
+        <default>0775</default>
+        <docblock>
+          <description>Default permissions for created Files.</description>
+          <long-description>
+</long-description>
+          <tag line="26" name="var" description="" type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="38" package="Default">
+        <name>$_oNavigationDom</name>
+        <default>null</default>
+        <docblock>
+          <description>XML-Document for navigation menu.</description>
+          <long-description>
+</long-description>
+          <tag line="33" name="var" description="" type="\DOMDocument">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="45" package="Default">
+        <name>$_sApplicationDir</name>
+        <default>null</default>
+        <docblock>
+          <description>Basepath on disk to OXID shop.</description>
+          <long-description>
+</long-description>
+          <tag line="40" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="66" package="Default">
+        <name>$_iBuildMode</name>
+        <default>self::BUILD_MODE_NEW_TAB</default>
+        <docblock>
+          <description>Current build mode</description>
+          <long-description>
+</long-description>
+          <tag line="61" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="73" package="Default">
+        <name>$_aResultLog</name>
+        <default>array()</default>
+        <docblock>
+          <description>Log for filesystem action results.</description>
+          <long-description>
+</long-description>
+          <tag line="68" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="78" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>class constructor</description>
+          <long-description>
+</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="92" package="Default">
+        <name>render</name>
+        <docblock>
+          <description>Prepare the data for presentation to and passes it to the template engine.</description>
+          <long-description>&lt;p&gt;Returns the filename of the template.&lt;/p&gt;
+</long-description>
+          <tag line="86" name="return" description="Name of template to render." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="114" package="Default">
+        <name>createModule</name>
+        <docblock>
+          <description>Collecting the data for the new admin module and created it, based on the data entered.</description>
+          <long-description>
+</long-description>
+          <tag line="109" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="309" package="Default">
+        <name>deleteModule</name>
+        <docblock>
+          <description>Removes an admin module that was created with the Admin Module Creator.</description>
+          <long-description>
+</long-description>
+          <tag line="304" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="342" package="Default">
+        <name>moduleInfo</name>
+        <docblock>
+          <description>Get information about the selected module and passes it to the template engine.</description>
+          <long-description>
+</long-description>
+          <tag line="337" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="353" package="Default">
+        <name>_rollback</name>
+        <docblock>
+          <description>Removes filesystem changes.</description>
+          <long-description>
+</long-description>
+          <tag line="348" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="376" package="Default">
+        <name>_finalize</name>
+        <docblock>
+          <description>Set data for template engine.</description>
+          <long-description>
+</long-description>
+          <tag line="369" name="param" description="Error message, if any error occurs." type="string" variable="$sErrorMessage">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="369" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="376">
+          <name>$sErrorMessage</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="390" package="Default">
+        <name>addResultLogEntry</name>
+        <docblock>
+          <description>Adds an entry to the result log.</description>
+          <long-description>
+</long-description>
+          <tag line="383" name="param" description="Entry to add." type="array" variable="$aLogEntry">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="383" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="390">
+          <name>$aLogEntry</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="400" package="Default">
+        <name>_passResultLogToTemplate</name>
+        <docblock>
+          <description>Passes the result log to template.</description>
+          <long-description>
+</long-description>
+          <tag line="395" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="411" package="Default">
+        <name>getResultLog</name>
+        <docblock>
+          <description>Get the result log.</description>
+          <long-description>
+</long-description>
+          <tag line="406" name="return" description="Result log." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="425" package="Default">
+        <name>_recurseCopy</name>
+        <docblock>
+          <description>Copies folders and files recursively to another directory.</description>
+          <long-description>
+</long-description>
+          <tag line="417" name="param" description="Source directory" type="string" variable="$sSrc">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="417" name="param" description="Target directory" type="string" variable="$sDst">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="417" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="425">
+          <name>$sSrc</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="425">
+          <name>$sDst</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="446" package="Default">
+        <name>getDirectoryPermissions</name>
+        <docblock>
+          <description>Get the current directory permissions.</description>
+          <long-description>
+</long-description>
+          <tag line="441" name="return" description="Directory permission." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="457" package="Default">
+        <name>getFilePermissions</name>
+        <docblock>
+          <description>Get the current file permissions.</description>
+          <long-description>
+</long-description>
+          <tag line="452" name="return" description="File permissions." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="472" package="Default">
+        <name>_applySourceTemplate</name>
+        <docblock>
+          <description>Loads a source template, replaces the placeholders and write it to the target directory.</description>
+          <long-description>
+</long-description>
+          <tag line="463" name="param" description="Name of source template" type="string" variable="$sTemplateFile">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="463" name="param" description="Name of target" type="string" variable="$sTargetFileName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="463" name="param" description="Replacements" type="array" variable="$aReplaceData">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="463" name="return" description="True if succeeded, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="472">
+          <name>$sTemplateFile</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="472">
+          <name>$sTargetFileName</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="472">
+          <name>$aReplaceData</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="492" package="Default">
+        <name>_writeFile</name>
+        <docblock>
+          <description>Writes data to the specified file and generates a log entry and returns it.</description>
+          <long-description>
+</long-description>
+          <tag line="483" name="param" description="Name of file to write." type="string" variable="$sFileName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="483" name="param" description="Content to write." type="string" variable="$sFileContent">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="483" name="param" description="If set to true, an existing file is overwritten, otherwise not." type="bool" variable="$blOverwrite">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="483" name="return" description="True if succeeded, false if not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="492">
+          <name>$sFileName</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="492">
+          <name>$sFileContent</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="492">
+          <name>$blOverwrite</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="540" package="Default">
+        <name>replaceVars</name>
+        <docblock>
+          <description>Replaces variables in a string with the assigned data.</description>
+          <long-description>
+</long-description>
+          <tag line="532" name="param" description="Associative array with vars and its data." type="array" variable="$aVariableData">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="532" name="param" description="String which includes vars to replace." type="string" variable="$sInputString">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="532" name="return" description="String where the vars are replaced by data." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="540">
+          <name>$aVariableData</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="540">
+          <name>$sInputString</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="556" package="Default">
+        <name>_getNavDOM</name>
+        <docblock>
+          <description>Get validated navigation XML-Document.</description>
+          <long-description>&lt;p&gt;This function gets the original DOMDocument and
+add document type definition for validate.&lt;/p&gt;
+</long-description>
+          <tag line="549" name="return" description="New navigation XML-Document." type="\DOMDocument">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="579" package="Default">
+        <name>_buildPathData</name>
+        <docblock>
+          <description>Build an array, that contains the data for the modules menu.xml.</description>
+          <long-description>
+</long-description>
+          <tag line="572" name="param" description="Node where the new menu entry will be created." type="\DOMNode" variable="$oNode">
+            <type by_reference="false">\DOMNode</type>
+          </tag>
+          <tag line="572" name="return" description="Data for new navigation menu entry." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="579">
+          <name>$oNode</name>
+          <default/>
+          <type>DOMNode</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="614" package="Default">
+        <name>_getBuildMode</name>
+        <docblock>
+          <description>Get the current build mode.</description>
+          <long-description>
+</long-description>
+          <tag line="609" name="return" description="Current build mode." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="627" package="Default">
+        <name>_setBuildMode</name>
+        <docblock>
+          <description>Set the current build mode.</description>
+          <long-description>
+</long-description>
+          <tag line="620" name="param" description="New build mode." type="int" variable="$iNewBuildMode">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="620" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="627">
+          <name>$iNewBuildMode</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="639" package="Default">
+        <name>setNavigationDOM</name>
+        <docblock>
+          <description>Set the current navigation XML-Document.</description>
+          <long-description>
+</long-description>
+          <tag line="632" name="param" description="Current navigation XML-Document." type="\DOMDocument" variable="$oNavigationDom">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+          <tag line="632" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="639">
+          <name>$oNavigationDom</name>
+          <default/>
+          <type>DOMDocument</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="659" package="Default">
+        <name>getNavigationDom</name>
+        <docblock>
+          <description>Get the navigation DOMDocument.</description>
+          <long-description>
+</long-description>
+          <tag line="654" name="return" description="Navigation DOMDocument." type="\DOMDocument">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="670" package="Default">
+        <name>getApplicationDir</name>
+        <docblock>
+          <description>Get the current OXID application directory.</description>
+          <long-description>
+</long-description>
+          <tag line="665" name="return" description="Current OXID application directory." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="683" package="Default">
+        <name>setApplicationDir</name>
+        <docblock>
+          <description>Set the OXID application directory.</description>
+          <long-description>
+</long-description>
+          <tag line="676" name="param" description="New OXID application directory." type="string" variable="$sAppDir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="676" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="683">
+          <name>$sAppDir</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="693" package="Default">
+        <name>getCreatedModules</name>
+        <docblock>
+          <description>Get all the modules that were created with the Admin Module Creator.</description>
+          <long-description>
+</long-description>
+          <tag line="688" name="return" description="List of AMC modules." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="718" package="Default">
+        <name>getModuleInfo</name>
+        <docblock>
+          <description>Get information about a specific module.</description>
+          <long-description>
+</long-description>
+          <tag line="711" name="param" description="Name of module." type="string" variable="$sModuleName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="711" name="return" description="Module information or false." type="array|false">
+            <type by_reference="false">array</type>
+            <type by_reference="false">false</type>
+          </tag>
+        </docblock>
+        <argument line="718">
+          <name>$sModuleName</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="736" package="Default">
+        <name>_deleteCacheFiles</name>
+        <docblock>
+          <description>Deletes files from cache. These files are language and menu cache files.</description>
+          <long-description>
+</long-description>
+          <tag line="731" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="757" package="Default">
+        <name>getVersion</name>
+        <docblock>
+          <description>Get the current module Version</description>
+          <long-description>
+</long-description>
+          <tag line="752" name="return" description="Current module version" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="770" package="Default">
+        <name>_checkConfig</name>
+        <docblock>
+          <description>Check the post data.</description>
+          <long-description>
+</long-description>
+          <tag line="763" name="param" description="Post data" type="array" variable="$aEditval">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="763" name="return" description="" type="\stdClass">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+        </docblock>
+        <argument line="770">
+          <name>$aEditval</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="808" package="Default">
+        <name>getModuleNavTreePath</name>
+        <docblock>
+          <description>Builds the translated (implode() isn't usable in a smarty template) path in the admin navigation tree.</description>
+          <long-description>
+</long-description>
+          <tag line="801" name="param" description="Name of the module" type="string" variable="$sModuleName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="801" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="808">
+          <name>$sModuleName</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="core/smarty/plugins/function.mfmultilangreplace.php" hash="fc5ab8df2923d9f4c05fe6bb571a5e6b" package="mfAdminModuleCreator">
+    <docblock>
+      <description>Smarty function
+-------------------------------------------------------------
+Purpose: Output multilang string
+add [{ oxmultilang ident="..." }] where you want to display content
+-------------------------------------------------------------</description>
+      <long-description>
+</long-description>
+      <tag line="2" name="package" description="mfAdminModuleCreator"/>
+      <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+      <tag line="2" name="license" description="BSD"/>
+      <tag line="2" name="version" description="0.1"/>
+      <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+    </docblock>
+    <include type="Require Once" line="15">
+      <name>function.oxmultilang.php</name>
+    </include>
+    <function namespace="default" line="24" package="mfAdminModuleCreator">
+      <name>smarty_function_mfmultilangreplace</name>
+      <type>function</type>
+      <docblock>
+        <description>Loads a langauge string and replaces %s with the specified args.</description>
+        <long-description>
+</long-description>
+        <tag line="16" name="param" description="Pluginparameters" type="array" variable="$params">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="16" name="param" description="&amp;$smarty Templateengine object." type="object" variable="$smarty">
+          <type by_reference="false">object</type>
+        </tag>
+        <tag line="16" name="return" description="" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+      </docblock>
+      <argument line="24">
+        <name>$params</name>
+        <default/>
+        <type/>
+      </argument>
+      <argument line="24">
+        <name>$smarty</name>
+        <default/>
+        <type/>
+      </argument>
+    </function>
+  </file>
+  <file path="core/mfmenuxmlbuilder.php" hash="8fd00fe4768d59c86e1bc4d043042b84" package="mfAdminModuleCreator">
+    <docblock>
+      <description>Builds a new XML-Document based on an input array.</description>
+      <long-description>
+</long-description>
+      <tag line="2" name="package" description="mfAdminModuleCreator"/>
+      <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+      <tag line="2" name="license" description="BSD"/>
+      <tag line="2" name="version" description="0.1"/>
+      <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+    </docblock>
+    <class final="false" abstract="false" line="11" namespace="default" package="mfAdminModuleCreator">
+      <name>mfMenuXmlBuilder</name>
+      <extends/>
+      <full_name>\mfMenuXmlBuilder</full_name>
+      <docblock>
+        <description>Builds a new XML-Document based on an input array.</description>
+        <long-description>
+</long-description>
+        <tag line="2" name="package" description="mfAdminModuleCreator"/>
+        <tag line="2" name="author" description="Stefan Krenz &lt;stefan.krenz@mayflower.de&gt;"/>
+        <tag line="2" name="license" description="BSD"/>
+        <tag line="2" name="version" description="0.1"/>
+        <tag line="2" name="link" description="http://amc.projects.oxidforge.org/" link="http://amc.projects.oxidforge.org/"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="18" package="Default">
+        <name>$_oMenuXmlDocument</name>
+        <default>null</default>
+        <docblock>
+          <description>The XML-Document for the new modules menu.xml.</description>
+          <long-description>
+</long-description>
+          <tag line="13" name="var" description="" type="\DOMDocument">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" line="23" package="Default">
+        <name>__construct</name>
+        <docblock>
+          <description>Class constructor</description>
+          <long-description>
+</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="36" package="Default">
+        <name>buildMenuXml</name>
+        <docblock>
+          <description>Builds the DOMDocument dependent on the menu data.</description>
+          <long-description>
+</long-description>
+          <tag line="29" name="param" description="Menu data for the XML." type="array" variable="$aMenuData">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="29" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="36">
+          <name>$aMenuData</name>
+          <default/>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" line="56" package="Default">
+        <name>_addElement</name>
+        <docblock>
+          <description>Creates a new DOMElement and appends it on the specified node.</description>
+          <long-description>
+</long-description>
+          <tag line="48" name="param" description="Node, to append the new." type="\DOMNode" variable="$oNode">
+            <type by_reference="false">\DOMNode</type>
+          </tag>
+          <tag line="48" name="param" description="Data for the new node." type="array" variable="$aNodeData">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="48" name="return" description="" type="\DOMElement|null">
+            <type by_reference="false">\DOMElement</type>
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$oNode</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$aNodeData</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="90" package="Default">
+        <name>getXmlDocument</name>
+        <docblock>
+          <description>Get the DOMDocument object, representing current menu.xml.</description>
+          <long-description>
+</long-description>
+          <tag line="85" name="return" description="" type="\DOMDocument">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" line="102" package="Default">
+        <name>setXmlDocument</name>
+        <docblock>
+          <description>Set the DOMDocument object, representing current menu.xml.</description>
+          <long-description>
+</long-description>
+          <tag line="95" name="param" description="The new XML-Document." type="\DOMDocument" variable="$oMenuXml">
+            <type by_reference="false">\DOMDocument</type>
+          </tag>
+          <tag line="95" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="102">
+          <name>$oMenuXml</name>
+          <default/>
+          <type>DOMDocument</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Default"/>
+  <package name="mfAdminModuleCreator"/>
+  <namespace name="default"/>
+  <marker>todo</marker>
+  <marker>fixme</marker>
+  <marker>xxx</marker>
+</project>
